@@ -21,7 +21,10 @@ operations = {'+' : add,
               '/' : divide
 }
 
-while True:
+
+continue_to_ask_questions = True
+
+while continue_to_ask_questions:
   first_number = float(input("What is the first number?"))
 
   while True:
@@ -29,32 +32,21 @@ while True:
     if chosen_operation not in operations:
       print("Invalid operator. Please try again.")
       continue
+    break
 
-    second_number = float(input("What is the second number?"))
+  second_number = float(input("What is the second number?"))
 
-    if chosen_operation in operations:
-      result = (operations[chosen_operation](first_number, second_number))
-      print(result)
+  result = (operations[chosen_operation](first_number, second_number))
+  print(result)
 
-    else:
-      print("invalid value")
-
-    continue_calculating_or_new = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation (or 'q' to quit): ").lower()
-
+  # while to ensure that y or q is pressed
+  while True:
+    continue_calculating_or_new = input(f"Type 'y' to continue calculating or 'q' to quit: ").lower()
     if continue_calculating_or_new == "y":
-      first_number = result
-
-    elif continue_calculating_or_new == "n":
-      break  # Начинаем новый цикл с нового числа
-
+      break
     elif continue_calculating_or_new == "q":
-      print("Goodbye!")
-      exit()  # Полностью завершает программу
-
-    else:
-      start_again_after_fail = input("Invalid value\n Do you want to start again? Type 'y' for start again, type 'n' for end calculating").lower()
-      if start_again_after_fail == 'y':
-        break
-      else:
-        print("Goodbye!")
-        exit()
+      print("Bye bye!")
+      continue_to_ask_questions = False
+      break  # Начинаем новый цикл с нового числа
+    else: 
+      print("Wrong input put either 'y' or 'q'")
