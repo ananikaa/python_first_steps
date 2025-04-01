@@ -1,8 +1,5 @@
----
-config:
-  theme: redux
----
-flowchart TD
+```mermaid
+graph TD;
     A(["Welcome user"]) --> n1(["Create a random number (1, 100)"])
     n1 --> n2(["Give choose a level"])
     n2 --> n3["Easy - 10 attempts"] & n4["Hard - 5 attempts"]
